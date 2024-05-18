@@ -64,15 +64,9 @@ int main() {
 	});
 	*/
 
-	// SMBIOS
-	DeleteValue(HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services\\mssmbios\\Data", L"SMBiosData");
+	
+	DeleteValue(HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services\\Data", L"SMBiosData");
 
-	// Motherboard
-	SpoofUniqueThen(HKEY_LOCAL_MACHINE, L"SYSTEM\\HardwareConfig", L"LastConfig", {
-		ForEachSubkey(key, {
-			if (_wcsicmp(name, L"current")) {
-				RenameSubkey(key, name, spoof);
-				break;
 			}
 		});
 	});
@@ -250,7 +244,7 @@ int main() {
 				CloseHandle(device);
 			}
 
-			wsprintf(path, L"%c:\\Windows\\System32\\restore\\MachineGuid.txt", drive);
+			wsprintf(path, L"%c:\\Windows\\System32\\restore\\ drive);
 			ForceDeleteFile(path);
 
 			wsprintf(path, L"%c:\\Users\\Public\\Libraries\\collection.dat", drive);
